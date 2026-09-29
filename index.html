@@ -1,0 +1,1375 @@
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Azbaa Café & Bistro — Mardan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif'],
+          },
+          colors: {
+            sand: {
+              50: '#FBFBFA',
+              100: '#F6F5F2',
+              200: '#EBE8E1',
+              300: '#DDD8CE',
+              600: '#8A8477',
+              800: '#4A463F',
+              900: '#23211D',
+            },
+            accent: '#C86D51'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #FAFAF8;
+      color: #262522;
+      -webkit-font-smoothing: antialiased;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background-color: #DDD8CE;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="font-sans text-sand-900 selection:bg-sand-200">
+
+  <!-- TOP ANNOUNCEMENT BANNER -->
+  <div class="border-b border-sand-200 bg-sand-100/70 text-xs text-sand-800 py-2 px-4">
+    <div class="max-w-6xl mx-auto flex flex-wrap justify-between items-center gap-2">
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span class="font-medium">Open today until 12:00 AM</span>
+        <span class="text-sand-300">•</span>
+        <span>KMH Plaza, Nowshera Mardan Rd</span>
+      </div>
+      <div class="flex items-center gap-5 text-[11px] uppercase tracking-wider">
+        <a href="tel:03189051565" class="hover:text-black transition">Tel: 0318 9051565</a>
+        <span class="text-sand-300">•</span>
+        <button onclick="toggleModal('hours-modal')" class="hover:underline text-sand-800">Hours & Service Options</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav class="sticky top-0 z-40 bg-[#FAFAF8]/90 backdrop-blur-md border-b border-sand-200 transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="group">
+        <span class="font-serif text-2xl tracking-wider uppercase font-medium">Azbaa</span>
+        <span class="text-[10px] block uppercase tracking-[0.28em] text-sand-600 group-hover:text-black transition">Café & Bistro</span>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-sand-800 tracking-wide">
+        <a href="#menu" class="hover:text-black transition">Menu Highlights</a>
+        <a href="#experience" class="hover:text-black transition">Experience</a>
+        <a href="#reviews" class="hover:text-black transition">Reviews & Awards</a>
+        <a href="#location" class="hover:text-black transition">Location</a>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-3">
+        <button onclick="openOrderModal('pickup')" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-xs uppercase tracking-wider font-semibold border border-sand-300 rounded-full hover:border-black hover:bg-black hover:text-white transition duration-200">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+          Pickup
+        </button>
+
+        <button onclick="openOrderModal('delivery')" class="inline-flex items-center gap-2 px-4 py-2 text-xs uppercase tracking-wider font-semibold bg-sand-900 text-white rounded-full hover:bg-neutral-800 transition shadow-sm">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          Order Online
+        </button>
+
+        <!-- Cart Trigger -->
+        <button onclick="toggleCart()" class="relative p-2.5 rounded-full border border-sand-300 hover:border-sand-800 transition">
+          <svg class="w-4 h-4 text-sand-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          <span id="cart-badge" class="absolute -top-1 -right-1 w-4 h-4 bg-accent text-white text-[10px] rounded-full flex items-center justify-center font-bold">2</span>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button onclick="toggleMobileNav()" class="md:hidden p-2 text-sand-900">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-sand-200 bg-sand-50 px-6 py-6 space-y-4">
+      <a href="#menu" onclick="toggleMobileNav()" class="block text-base font-medium">Menu Highlights</a>
+      <a href="#experience" onclick="toggleMobileNav()" class="block text-base font-medium">Experience & Philosophy</a>
+      <a href="#reviews" onclick="toggleMobileNav()" class="block text-base font-medium">Google Reviews (4.3★)</a>
+      <a href="#location" onclick="toggleMobileNav()" class="block text-base font-medium">Location & Directions</a>
+      <div class="pt-4 border-t border-sand-200 flex flex-col gap-2">
+        <button onclick="openOrderModal('pickup'); toggleMobileNav()" class="w-full py-2.5 text-xs uppercase tracking-wider font-semibold border border-sand-300 rounded-full">Order Pickup</button>
+        <button onclick="openOrderModal('delivery'); toggleMobileNav()" class="w-full py-2.5 text-xs uppercase tracking-wider font-semibold bg-sand-900 text-white rounded-full">Order Delivery</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <header class="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden">
+    <div class="max-w-6xl mx-auto px-6">
+      
+      <!-- Top Google Summary Card Badge (directly translating reference intent) -->
+      <div class="inline-flex items-center gap-3 bg-white border border-sand-200 rounded-full py-1.5 px-4 mb-8 shadow-sm text-xs">
+        <div class="flex items-center text-amber-500">
+          <span>★★★★</span><span class="text-amber-300">★</span>
+        </div>
+        <span class="font-semibold text-sand-900">4.3</span>
+        <span class="text-sand-600">(846 reviews)</span>
+        <span class="text-sand-300">|</span>
+        <span class="text-sand-700">Mardan's Premier Casual Dining</span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Text Column -->
+        <div class="lg:col-span-7 space-y-6">
+          <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl text-sand-900 leading-[1.15] tracking-tight">
+            Artisanal crusts, grilled signatures & tranquil moments.
+          </h1>
+          <p class="text-sand-600 text-base md:text-lg max-w-xl font-normal leading-relaxed">
+            Welcome to Azbaa Café. From our iconic Crown Crust Pizza to flame-grilled gourmet burgers, each recipe is handcrafted with balanced flavors and generous hospitality.
+          </p>
+
+          <!-- Action buttons & Service pills -->
+          <div class="pt-2 flex flex-wrap items-center gap-3">
+            <a href="#menu" class="px-6 py-3.5 rounded-full bg-sand-900 text-white text-xs uppercase tracking-wider font-medium hover:bg-black transition duration-200">
+              Explore The Menu
+            </a>
+            <button onclick="toggleModal('reservation-modal')" class="px-6 py-3.5 rounded-full border border-sand-300 text-sand-900 text-xs uppercase tracking-wider font-medium hover:border-black transition duration-200">
+              Reserve A Table
+            </button>
+            <a href="https://maps.google.com/?q=KMH+Plaza+Nowshera+Mardan+Rd+Mardan" target="_blank" class="p-3.5 rounded-full border border-sand-300 text-sand-600 hover:text-sand-900 hover:border-sand-900 transition" title="Get Directions">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            </a>
+          </div>
+
+          <!-- Quick Micro-info -->
+          <div class="pt-6 border-t border-sand-200 grid grid-cols-3 gap-4 text-xs">
+            <div>
+              <p class="text-sand-600 font-medium">Price range</p>
+              <p class="font-semibold text-sand-900 mt-0.5">Rs 1–1,000 / person</p>
+            </div>
+            <div>
+              <p class="text-sand-600 font-medium">Service options</p>
+              <p class="font-semibold text-sand-900 mt-0.5">Dine-in • Pickup • Delivery</p>
+            </div>
+            <div>
+              <p class="text-sand-600 font-medium">Family Friendly</p>
+              <p class="font-semibold text-sand-900 mt-0.5">All-you-can-eat & kids menu</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image Gallery / Minimalist Showcase -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative mx-auto max-w-md lg:max-w-none">
+            <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-sand-200 shadow-xl relative">
+              <img 
+                src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1000&q=80" 
+                alt="Azbaa Special Pizza" 
+                class="w-full h-full object-cover object-center transform hover:scale-105 transition duration-700 ease-out"
+              >
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+              
+              <!-- Floating Pill Card on Hero -->
+              <div class="absolute bottom-5 left-5 right-5 bg-white/95 backdrop-blur-sm p-4 rounded-xl shadow-lg border border-sand-100 flex items-center justify-between">
+                <div>
+                  <span class="text-[10px] uppercase font-bold tracking-widest text-accent">Signature Delight</span>
+                  <h4 class="font-serif text-sand-900 font-medium text-base">Crown Crust Pizza</h4>
+                  <p class="text-xs text-sand-600">Golden stuffed crust filled with cream cheese</p>
+                </div>
+                <div class="text-right">
+                  <span class="text-xs font-semibold block text-sand-900">Rs. 1,700</span>
+                  <button onclick="addToCart('Crown Crust Pizza', 1700)" class="text-[11px] underline font-semibold text-sand-800 hover:text-accent mt-0.5">Add to tray</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Small secondary aesthetic picture badge -->
+            <div class="hidden sm:block absolute -top-5 -left-6 w-28 h-28 rounded-xl overflow-hidden shadow-md border-4 border-[#FAFAF8]">
+              <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover" alt="Chicken Burger">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- QUICK DEALS BANNER (From the screenshot deals snippet) -->
+  <section class="border-y border-sand-200 bg-sand-100/50 py-6">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <span class="px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider bg-sand-900 text-white rounded">Popular Combos</span>
+          <p class="text-sm text-sand-800 font-medium">
+            <span class="text-black font-semibold">Zinger Got Wings Deal-1</span> for only Rs. 1,250 & <span class="text-black font-semibold">EveryDay Value Large Pizza</span> at Rs. 1,700
+          </p>
+        </div>
+        <button onclick="openDeal('Zinger Got Wings Deal-1', 1250)" class="text-xs uppercase tracking-wider font-semibold text-sand-900 hover:text-accent flex items-center gap-1.5 transition">
+          Claim Deal
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU HIGHLIGHTS SECTION (Mirroring Reference & Expanding Cleanly) -->
+  <section id="menu" class="py-20">
+    <div class="max-w-6xl mx-auto px-6">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 pb-6 border-b border-sand-200">
+        <div>
+          <span class="text-xs uppercase tracking-[0.2em] text-sand-600 block mb-2 font-medium">Curated Selection</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-sand-900">Menu Highlights</h2>
+        </div>
+
+        <!-- Filter tabs -->
+        <div class="flex items-center gap-2 mt-6 md:mt-0 overflow-x-auto pb-2 md:pb-0 custom-scrollbar">
+          <button onclick="filterCategory('all', this)" class="menu-tab-btn px-4 py-1.5 text-xs rounded-full font-medium transition bg-sand-900 text-white">All Items</button>
+          <button onclick="filterCategory('pizza', this)" class="menu-tab-btn px-4 py-1.5 text-xs rounded-full font-medium transition bg-transparent hover:bg-sand-200 text-sand-800">Stone Crust Pizzas</button>
+          <button onclick="filterCategory('burgers', this)" class="menu-tab-btn px-4 py-1.5 text-xs rounded-full font-medium transition bg-transparent hover:bg-sand-200 text-sand-800">Gourmet Burgers</button>
+          <button onclick="filterCategory('deals', this)" class="menu-tab-btn px-4 py-1.5 text-xs rounded-full font-medium transition bg-transparent hover:bg-sand-200 text-sand-800">Wings & Value Deals</button>
+        </div>
+      </div>
+
+      <!-- Menu Items Grid -->
+      <div id="menu-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Item 1: Crown Crust Pizza (From ref) -->
+        <div class="menu-card group bg-white border border-sand-200 rounded-2xl overflow-hidden hover:border-sand-300 hover:shadow-md transition-all duration-300 flex flex-col justify-between" data-category="pizza">
+          <div>
+            <div class="aspect-[4/3] bg-sand-100 relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?auto=format&fit=crop&w=700&q=80" alt="Crown Crust Pizza" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-xs text-[11px] font-semibold tracking-wider uppercase px-2.5 py-1 rounded-md text-sand-800">
+                1 photo • Most Ordered
+              </span>
+            </div>
+            <div class="p-6">
+              <div class="flex items-start justify-between gap-3 mb-2">
+                <h3 class="font-serif text-lg font-semibold text-sand-900">Crown Crust Pizza</h3>
+                <span class="text-sm font-bold text-sand-900">Rs. 1,750</span>
+              </div>
+              <p class="text-xs text-sand-600 leading-relaxed">
+                Sculpted ring of cheesy pockets baked to crisp golden completion, layered with spiced shredded chicken, herbs, and mozzarella.
+              </p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-2 flex items-center justify-between border-t border-sand-100">
+            <button onclick="openItemDetails('Crown Crust Pizza', 1750, 'Sculpted ring of cheesy pockets baked to crisp golden completion, layered with spiced shredded chicken, herbs, and mozzarella.', 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?auto=format&fit=crop&w=700&q=80')" class="text-xs font-medium text-sand-600 hover:text-black transition">
+              Customise & Details
+            </button>
+            <button onclick="addToCart('Crown Crust Pizza', 1750)" class="px-3.5 py-1.5 bg-sand-100 hover:bg-sand-900 hover:text-white text-sand-900 rounded-full text-xs font-medium transition duration-150">
+              + Add
+            </button>
+          </div>
+        </div>
+
+        <!-- Item 2: Chicken Grilled Burger (From ref) -->
+        <div class="menu-card group bg-white border border-sand-200 rounded-2xl overflow-hidden hover:border-sand-300 hover:shadow-md transition-all duration-300 flex flex-col justify-between" data-category="burgers">
+          <div>
+            <div class="aspect-[4/3] bg-sand-100 relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=700&q=80" alt="Chicken Grilled Burger" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-xs text-[11px] font-semibold tracking-wider uppercase px-2.5 py-1 rounded-md text-sand-800">
+                1 photo • Chef Special
+              </span>
+            </div>
+            <div class="p-6">
+              <div class="flex items-start justify-between gap-3 mb-2">
+                <h3 class="font-serif text-lg font-semibold text-sand-900">Chicken Grilled Burger</h3>
+                <span class="text-sm font-bold text-sand-900">Rs. 650</span>
+              </div>
+              <p class="text-xs text-sand-600 leading-relaxed">
+                Char-grilled tender breast fillet glazed in house smoky BBQ reduction, paired with fresh iceberg, cucumber slices, and herb mayo.
+              </p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-2 flex items-center justify-between border-t border-sand-100">
+            <button onclick="openItemDetails('Chicken Grilled Burger', 650, 'Char-grilled tender breast fillet glazed in house smoky BBQ reduction, paired with fresh iceberg, cucumber slices, and herb mayo.', 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=700&q=80')" class="text-xs font-medium text-sand-600 hover:text-black transition">
+              Customise & Details
+            </button>
+            <button onclick="addToCart('Chicken Grilled Burger', 650)" class="px-3.5 py-1.5 bg-sand-100 hover:bg-sand-900 hover:text-white text-sand-900 rounded-full text-xs font-medium transition duration-150">
+              + Add
+            </button>
+          </div>
+        </div>
+
+        <!-- Item 3: Azbaa Special Pizza (From ref) -->
+        <div class="menu-card group bg-white border border-sand-200 rounded-2xl overflow-hidden hover:border-sand-300 hover:shadow-md transition-all duration-300 flex flex-col justify-between" data-category="pizza">
+          <div>
+            <div class="aspect-[4/3] bg-sand-100 relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=700&q=80" alt="Azbaa Special Pizza" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-xs text-[11px] font-semibold tracking-wider uppercase px-2.5 py-1 rounded-md text-sand-800">
+                1 photo • House Favorite
+              </span>
+            </div>
+            <div class="p-6">
+              <div class="flex items-start justify-between gap-3 mb-2">
+                <h3 class="font-serif text-lg font-semibold text-sand-900">Azbaa Special Pizza</h3>
+                <span class="text-sm font-bold text-sand-900">Rs. 1,700</span>
+              </div>
+              <p class="text-xs text-sand-600 leading-relaxed">
+                Signature dough topped with smoked chicken sausages, bell peppers, sliced black olives, sautéed mushrooms, and double cheese blend.
+              </p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-2 flex items-center justify-between border-t border-sand-100">
+            <button onclick="openItemDetails('Azbaa Special Pizza', 1700, 'Signature dough topped with smoked chicken sausages, bell peppers, sliced black olives, sautéed mushrooms, and double cheese blend.', 'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=700&q=80')" class="text-xs font-medium text-sand-600 hover:text-black transition">
+              Customise & Details
+            </button>
+            <button onclick="addToCart('Azbaa Special Pizza', 1700)" class="px-3.5 py-1.5 bg-sand-100 hover:bg-sand-900 hover:text-white text-sand-900 rounded-full text-xs font-medium transition duration-150">
+              + Add
+            </button>
+          </div>
+        </div>
+
+        <!-- Item 4: Zinger Got Wings Deal-1 (From ref text) -->
+        <div class="menu-card group bg-white border border-sand-200 rounded-2xl overflow-hidden hover:border-sand-300 hover:shadow-md transition-all duration-300 flex flex-col justify-between" data-category="deals">
+          <div>
+            <div class="aspect-[4/3] bg-sand-100 relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1527477378377-a85966dfeb94?auto=format&fit=crop&w=700&q=80" alt="Zinger Deal" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-xs text-[11px] font-semibold tracking-wider uppercase px-2.5 py-1 rounded-md text-sand-800">
+                Combo Offer
+              </span>
+            </div>
+            <div class="p-6">
+              <div class="flex items-start justify-between gap-3 mb-2">
+                <h3 class="font-serif text-lg font-semibold text-sand-900">Zinger Got Wings Deal-1</h3>
+                <span class="text-sm font-bold text-sand-900">Rs. 1,250</span>
+              </div>
+              <p class="text-xs text-sand-600 leading-relaxed">
+                1 Extra Crispy Zinger Burger + 4 Buffalo Glazed Wings + Seasoned French Fries + 500ml Chilled Beverage.
+              </p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-2 flex items-center justify-between border-t border-sand-100">
+            <button onclick="openItemDetails('Zinger Got Wings Deal-1', 1250, '1 Extra Crispy Zinger Burger + 4 Buffalo Glazed Wings + Seasoned French Fries + 500ml Chilled Beverage.', 'https://images.unsplash.com/photo-1527477378377-a85966dfeb94?auto=format&fit=crop&w=700&q=80')" class="text-xs font-medium text-sand-600 hover:text-black transition">
+              Customise & Details
+            </button>
+            <button onclick="addToCart('Zinger Got Wings Deal-1', 1250)" class="px-3.5 py-1.5 bg-sand-100 hover:bg-sand-900 hover:text-white text-sand-900 rounded-full text-xs font-medium transition duration-150">
+              + Add
+            </button>
+          </div>
+        </div>
+
+        <!-- Item 5: Crunch Got Wings Deal (From ref text) -->
+        <div class="menu-card group bg-white border border-sand-200 rounded-2xl overflow-hidden hover:border-sand-300 hover:shadow-md transition-all duration-300 flex flex-col justify-between" data-category="deals">
+          <div>
+            <div class="aspect-[4/3] bg-sand-100 relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1567620832903-9fc6debc209f?auto=format&fit=crop&w=700&q=80" alt="Wings Combo" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-xs text-[11px] font-semibold tracking-wider uppercase px-2.5 py-1 rounded-md text-sand-800">
+                Snack Favorite
+              </span>
+            </div>
+            <div class="p-6">
+              <div class="flex items-start justify-between gap-3 mb-2">
+                <h3 class="font-serif text-lg font-semibold text-sand-900">Crunch Got Wings (Deal-2)</h3>
+                <span class="text-sm font-bold text-sand-900">Rs. 1,050</span>
+              </div>
+              <p class="text-xs text-sand-600 leading-relaxed">
+                8 Pieces of golden battered crunchy chicken wings dipped in sweet chili garlic dip, served with salted fries.
+              </p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-2 flex items-center justify-between border-t border-sand-100">
+            <button onclick="openItemDetails('Crunch Got Wings (Deal-2)', 1050, '8 Pieces of golden battered crunchy chicken wings dipped in sweet chili garlic dip, served with salted fries.', 'https://images.unsplash.com/photo-1567620832903-9fc6debc209f?auto=format&fit=crop&w=700&q=80')" class="text-xs font-medium text-sand-600 hover:text-black transition">
+              Customise & Details
+            </button>
+            <button onclick="addToCart('Crunch Got Wings (Deal-2)', 1050)" class="px-3.5 py-1.5 bg-sand-100 hover:bg-sand-900 hover:text-white text-sand-900 rounded-full text-xs font-medium transition duration-150">
+              + Add
+            </button>
+          </div>
+        </div>
+
+        <!-- Item 6: EveryDay Value Large Pizza (From ref text) -->
+        <div class="menu-card group bg-white border border-sand-200 rounded-2xl overflow-hidden hover:border-sand-300 hover:shadow-md transition-all duration-300 flex flex-col justify-between" data-category="pizza">
+          <div>
+            <div class="aspect-[4/3] bg-sand-100 relative overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=700&q=80" alt="Value Pizza" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              <span class="absolute top-3 left-3 bg-white/90 backdrop-blur-xs text-[11px] font-semibold tracking-wider uppercase px-2.5 py-1 rounded-md text-sand-800">
+                Large 13-inch
+              </span>
+            </div>
+            <div class="p-6">
+              <div class="flex items-start justify-between gap-3 mb-2">
+                <h3 class="font-serif text-lg font-semibold text-sand-900">EveryDay Value Large Pizza</h3>
+                <span class="text-sm font-bold text-sand-900">Rs. 1,700</span>
+              </div>
+              <p class="text-xs text-sand-600 leading-relaxed">
+                Hand-tossed airy thin crust, rich tomato pomodoro, hearty mozzarella, and your choice of Chicken Fajita or Tikka.
+              </p>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-2 flex items-center justify-between border-t border-sand-100">
+            <button onclick="openItemDetails('EveryDay Value Large Pizza', 1700, 'Hand-tossed airy thin crust, rich tomato pomodoro, hearty mozzarella, and your choice of Chicken Fajita or Tikka.', 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=700&q=80')" class="text-xs font-medium text-sand-600 hover:text-black transition">
+              Customise & Details
+            </button>
+            <button onclick="addToCart('EveryDay Value Large Pizza', 1700)" class="px-3.5 py-1.5 bg-sand-100 hover:bg-sand-900 hover:text-white text-sand-900 rounded-full text-xs font-medium transition duration-150">
+              + Add
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- See Full Menu Button (Directly from reference) -->
+      <div class="mt-14 text-center">
+        <button onclick="toggleModal('full-menu-modal')" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border border-sand-300 bg-white hover:bg-sand-900 hover:text-white text-sand-900 text-xs uppercase tracking-wider font-semibold shadow-xs transition duration-200">
+          <span>See full menu</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY / ABOUT SECTION -->
+  <section id="experience" class="py-20 bg-sand-100/60 border-y border-sand-200">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div>
+          <span class="text-xs uppercase tracking-[0.2em] text-sand-600 font-medium block mb-2">Our Culinary Roots</span>
+          <h2 class="font-serif text-3xl sm:text-4xl text-sand-900 leading-tight mb-6">
+            A serene space for hearty meals & genuine gatherings in Mardan.
+          </h2>
+          <div class="space-y-4 text-sm text-sand-600 leading-relaxed">
+            <p>
+              Located centrally at KMH Plaza on Nowshera Mardan Road, Azbaa Café was conceived to bridge the relaxed warmth of café culture with the punchy, flavorful indulgence of artisan pizzas, hand-crafted burgers, and slow-marinated wings.
+            </p>
+            <p>
+              Whether it’s a quick pickup after work, a quiet dine-in dinner with family, or late night cravings with our midnight service until 12:00 AM, our team brings care and consistency to every order.
+            </p>
+          </div>
+          <div class="mt-8 flex items-center gap-6">
+            <div>
+              <span class="font-serif text-3xl font-semibold text-sand-900">840+</span>
+              <span class="text-xs block text-sand-600">Local Verified Reviews</span>
+            </div>
+            <div class="w-px h-10 bg-sand-300"></div>
+            <div>
+              <span class="font-serif text-3xl font-semibold text-sand-900">100%</span>
+              <span class="text-xs block text-sand-600">Fresh Halal Ingredients</span>
+            </div>
+            <div class="w-px h-10 bg-sand-300"></div>
+            <div>
+              <span class="font-serif text-3xl font-semibold text-sand-900">Late</span>
+              <span class="text-xs block text-sand-600">Till 12:00 AM Midnight</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-sand-200">
+            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80" alt="Restaurant Interior" class="w-full h-full object-cover">
+          </div>
+          <div class="absolute -bottom-6 -right-4 sm:right-6 bg-white p-5 rounded-xl border border-sand-200 shadow-sm max-w-xs">
+            <p class="text-xs italic text-sand-800 leading-normal">
+              "The Crown Crust Pizza has set a whole new benchmark for pizzas in Mardan. Friendly staff and peaceful environment."
+            </p>
+            <span class="block text-[11px] font-bold text-sand-900 mt-2 uppercase tracking-wider">— Local Food Explorer</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS & GOOGLE PROFILE SNIPPET (Direct homage to screenshot UI) -->
+  <section id="reviews" class="py-20">
+    <div class="max-w-6xl mx-auto px-6">
+      
+      <!-- Top header with Google-style review summary -->
+      <div class="bg-white border border-sand-200 rounded-2xl p-6 sm:p-8 mb-12 flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-xs">
+        <div class="space-y-1">
+          <div class="flex items-center gap-2">
+            <span class="font-serif text-3xl font-bold text-sand-900">4.3</span>
+            <div class="flex text-amber-500 text-lg">
+              ★★★★<span class="text-amber-300">★</span>
+            </div>
+            <span class="text-xs text-sand-600 font-medium">(846 reviews on Google & Delivery)</span>
+          </div>
+          <p class="text-xs text-sand-600">Highly rated for Crown Crust Pizza, Chicken Burgers, and Family Friendly ambiance.</p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3">
+          <button onclick="toggleModal('write-review-modal')" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-sand-300 hover:border-black text-xs font-semibold uppercase tracking-wider text-sand-900 transition">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+            Write a review
+          </button>
+          <a href="https://maps.google.com/?q=KMH+Plaza+Nowshera+Mardan+Rd+Mardan" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-sand-900 hover:bg-neutral-800 text-white text-xs font-semibold uppercase tracking-wider transition">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            Directions (+4)
+          </a>
+        </div>
+      </div>
+
+      <!-- Testimonials grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-6 rounded-2xl bg-white border border-sand-200 flex flex-col justify-between">
+          <div>
+            <div class="flex text-amber-500 text-sm mb-3">★★★★★</div>
+            <p class="text-xs text-sand-700 leading-relaxed mb-4">
+              "Their Zinger Wings Deal is unmatched in Mardan. Wings are perfectly crunchy and freshly coated. Fast takeaway packaging too."
+            </p>
+          </div>
+          <div class="text-[11px] text-sand-500 font-medium">
+            <strong class="text-sand-900 block font-semibold">Hamza K.</strong>
+            <span>Verified Customer via Delivery</span>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white border border-sand-200 flex flex-col justify-between">
+          <div>
+            <div class="flex text-amber-500 text-sm mb-3">★★★★★</div>
+            <p class="text-xs text-sand-700 leading-relaxed mb-4">
+              "Crown crust pizza was extraordinary. Dough was light, crust had delicious savory filling, and the place at KMH Plaza is super clean."
+            </p>
+          </div>
+          <div class="text-[11px] text-sand-500 font-medium">
+            <strong class="text-sand-900 block font-semibold">Sara Khan</strong>
+            <span>Dine-in Customer</span>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-white border border-sand-200 flex flex-col justify-between">
+          <div>
+            <div class="flex text-amber-500 text-sm mb-3">★★★★☆</div>
+            <p class="text-xs text-sand-700 leading-relaxed mb-4">
+              "Good pricing for families. Average Rs 1,000 per person and large portions. Ordered delivery twice this month and both arrived hot."
+            </p>
+          </div>
+          <div class="text-[11px] text-sand-500 font-medium">
+            <strong class="text-sand-900 block font-semibold">Tariq Mahmood</strong>
+            <span>Local Guide Reviewer</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LOCATION, HOURS & BUSINESS INFO (Replicating all Google Sidebar details) -->
+  <section id="location" class="py-20 bg-sand-100/40 border-t border-sand-200">
+    <div class="max-w-6xl mx-auto px-6">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <!-- Details Column -->
+        <div class="lg:col-span-6 space-y-6">
+          <div>
+            <span class="text-xs uppercase tracking-[0.2em] text-sand-600 block mb-2 font-medium">Find & Contact Us</span>
+            <h2 class="font-serif text-3xl text-sand-900">Visit Azbaa Café</h2>
+          </div>
+
+          <div class="space-y-4 text-sm">
+            <!-- Service options -->
+            <div class="flex items-start gap-3 pb-3 border-b border-sand-200">
+              <svg class="w-5 h-5 text-sand-700 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+              <div>
+                <span class="font-semibold text-sand-900">Service options:</span>
+                <span class="text-sand-600 ml-1">All you can eat • Kids' menu • Dine-in • Takeaway • Contactless Delivery</span>
+              </div>
+            </div>
+
+            <!-- Address -->
+            <div class="flex items-start gap-3 pb-3 border-b border-sand-200">
+              <svg class="w-5 h-5 text-sand-700 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              <div>
+                <span class="font-semibold text-sand-900">Address:</span>
+                <p class="text-sand-600 mt-0.5">KMH Plaza, Nowshera Mardan Rd, near Bank Al Habib, Mardan, Khyber Pakhtunkhwa 23200</p>
+                <a href="https://maps.google.com/?q=KMH+Plaza+Nowshera+Mardan+Rd+near+Bank+Al+Habib+Mardan" target="_blank" class="inline-block mt-1 text-xs text-accent font-semibold hover:underline">Get turn-by-turn directions →</a>
+              </div>
+            </div>
+
+            <!-- Phone -->
+            <div class="flex items-start gap-3 pb-3 border-b border-sand-200">
+              <svg class="w-5 h-5 text-sand-700 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+              <div>
+                <span class="font-semibold text-sand-900">Phone:</span>
+                <a href="tel:03189051565" class="text-sand-900 font-semibold ml-1 hover:text-accent transition">0318 9051565</a>
+              </div>
+            </div>
+
+            <!-- Hours collapsible -->
+            <div class="flex items-start gap-3 pb-3 border-b border-sand-200">
+              <svg class="w-5 h-5 text-sand-700 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <div class="w-full">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <span class="font-semibold text-sand-900">Hours:</span>
+                    <span class="text-emerald-700 font-medium ml-1">Closes soon • 11:59 pm</span>
+                  </div>
+                  <button onclick="toggleHoursTable()" class="text-xs text-sand-600 hover:text-black underline flex items-center gap-1">
+                    <span id="hours-toggle-text">View schedule</span>
+                    <svg id="hours-arrow" class="w-3.5 h-3.5 transform transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                  </button>
+                </div>
+                
+                <!-- Expanded schedule table -->
+                <div id="hours-table" class="hidden mt-3 pt-2 text-xs space-y-1.5 text-sand-600 bg-white p-3 rounded-lg border border-sand-200">
+                  <div class="flex justify-between font-semibold text-sand-900"><span>Monday</span><span>12:00 PM – 11:59 PM</span></div>
+                  <div class="flex justify-between"><span>Tuesday</span><span>12:00 PM – 11:59 PM</span></div>
+                  <div class="flex justify-between"><span>Wednesday</span><span>12:00 PM – 11:59 PM</span></div>
+                  <div class="flex justify-between"><span>Thursday</span><span>12:00 PM – 11:59 PM</span></div>
+                  <div class="flex justify-between"><span>Friday</span><span>02:00 PM – 12:00 AM</span></div>
+                  <div class="flex justify-between"><span>Saturday</span><span>12:00 PM – 12:00 AM</span></div>
+                  <div class="flex justify-between"><span>Sunday</span><span>12:00 PM – 11:59 PM</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Price per person -->
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-sand-700 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <div>
+                <span class="font-semibold text-sand-900">Price per person:</span>
+                <span class="text-sand-600 ml-1">Rs 1–1,000</span>
+                <span class="text-[11px] text-sand-500 block">Reported by regular diners & online orders</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick interactive actions -->
+          <div class="pt-2 flex flex-wrap gap-3">
+            <button onclick="openOrderModal('pickup')" class="px-5 py-2.5 rounded-full bg-sand-900 hover:bg-neutral-800 text-white text-xs font-semibold uppercase tracking-wider transition">
+              Order Pickup
+            </button>
+            <button onclick="openOrderModal('delivery')" class="px-5 py-2.5 rounded-full border border-sand-300 hover:border-black text-sand-900 text-xs font-semibold uppercase tracking-wider transition">
+              Order Delivery
+            </button>
+            <button onclick="showToast('Calling 0318 9051565...')" class="px-5 py-2.5 rounded-full border border-sand-300 hover:border-black text-sand-900 text-xs font-semibold uppercase tracking-wider transition">
+              Call Restaurant
+            </button>
+          </div>
+        </div>
+
+        <!-- Visual Map / Location Graphic -->
+        <div class="lg:col-span-6 flex flex-col justify-between">
+          <div class="rounded-2xl border border-sand-200 overflow-hidden bg-white shadow-xs h-full min-h-[320px] flex flex-col">
+            <!-- Simulated Map Header -->
+            <div class="p-4 bg-sand-100/60 border-b border-sand-200 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
+                <span class="text-xs font-semibold text-sand-900">KMH Plaza, Mardan</span>
+              </div>
+              <a href="https://maps.google.com/?q=KMH+Plaza+Mardan" target="_blank" class="text-[11px] text-accent font-semibold hover:underline">Open in Google Maps ↗</a>
+            </div>
+            <!-- Minimal Map Canvas Representation -->
+            <div class="relative flex-1 bg-stone-100 flex items-center justify-center p-8 overflow-hidden min-h-[220px]">
+              <!-- Subtle grid styling -->
+              <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#78716c 1px, transparent 1px); background-size: 16px 16px;"></div>
+              
+              <div class="relative text-center max-w-xs bg-white/90 backdrop-blur-xs p-6 rounded-xl border border-sand-200 shadow-sm">
+                <div class="w-10 h-10 rounded-full bg-sand-900 text-white mx-auto flex items-center justify-center mb-3">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                </div>
+                <h4 class="font-serif font-semibold text-sand-900 text-sm">Azbaa Café & Bistro</h4>
+                <p class="text-xs text-sand-600 mt-1">KMH Plaza, Nowshera Mardan Rd, near Bank Al Habib, Mardan</p>
+                <div class="mt-4">
+                  <a href="https://maps.google.com/?q=KMH+Plaza+Nowshera+Mardan+Rd+Mardan" target="_blank" class="px-4 py-2 bg-sand-900 text-white rounded-full text-xs font-medium inline-block hover:bg-neutral-800 transition">Get Live Route</a>
+                </div>
+              </div>
+            </div>
+            <!-- Quick footer with owner claim as in screenshot -->
+            <div class="px-4 py-3 bg-sand-50 border-t border-sand-200 flex justify-between items-center text-[11px] text-sand-600">
+              <span>Suggest an edit</span>
+              <a href="#" onclick="showToast('Business verification initiated.'); return false;" class="text-sand-800 hover:underline">Own this business?</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-sand-200 pt-16 pb-12 text-xs text-sand-600">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        <div class="space-y-3 md:col-span-1">
+          <span class="font-serif text-xl tracking-wider uppercase font-medium text-sand-900 block">Azbaa</span>
+          <p class="leading-relaxed">
+            Delivering culinary craft and wholesome café dining across Mardan.
+          </p>
+          <p class="text-[11px] text-sand-500">© <span id="year"></span> Azbaa Café. All rights reserved.</p>
+        </div>
+
+        <div>
+          <h5 class="text-sand-900 font-semibold uppercase tracking-wider mb-3 text-[11px]">Popular Flavors</h5>
+          <ul class="space-y-2">
+            <li><a href="#menu" class="hover:text-black">Crown Crust Pizza</a></li>
+            <li><a href="#menu" class="hover:text-black">Chicken Grilled Burger</a></li>
+            <li><a href="#menu" class="hover:text-black">Azbaa Special Pizza</a></li>
+            <li><a href="#menu" class="hover:text-black">Zinger Wings Combos</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 class="text-sand-900 font-semibold uppercase tracking-wider mb-3 text-[11px]">Quick Access</h5>
+          <ul class="space-y-2">
+            <li><button onclick="openOrderModal('pickup')" class="hover:text-black text-left">Order for Pickup</button></li>
+            <li><button onclick="openOrderModal('delivery')" class="hover:text-black text-left">Home Delivery</button></li>
+            <li><button onclick="toggleModal('reservation-modal')" class="hover:text-black text-left">Book a Table</button></li>
+            <li><button onclick="toggleModal('hours-modal')" class="hover:text-black text-left">Opening Hours</button></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 class="text-sand-900 font-semibold uppercase tracking-wider mb-3 text-[11px]">Stay in touch</h5>
+          <p class="mb-3">Get exclusive weekday combo codes directly to your inbox.</p>
+          <form onsubmit="handleNewsletter(event)" class="flex gap-2">
+            <input type="email" placeholder="Your email address" required class="bg-sand-100 border border-sand-200 rounded-lg px-3 py-2 text-xs w-full focus:outline-none focus:border-sand-800">
+            <button type="submit" class="px-3.5 py-2 bg-sand-900 text-white rounded-lg text-xs font-medium hover:bg-black transition">Join</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-sand-200 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] text-sand-500">
+        <div>KMH Plaza, Nowshera Mardan Rd, near Bank Al Habib, Mardan 23200</div>
+        <div class="flex gap-4">
+          <a href="#" class="hover:text-sand-900">Foodpanda Listing</a>
+          <a href="#" class="hover:text-sand-900">Privacy Policy</a>
+          <a href="#" class="hover:text-sand-900">Terms of Dining</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== INTERACTIVE MODALS & DRAWERS ==================== -->
+
+  <!-- SLIDE-OVER CART DRAWER -->
+  <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden pointer-events-none transition-all duration-300 opacity-0 invisible">
+    <div onclick="toggleCart()" class="absolute inset-0 bg-black/40 backdrop-blur-xs transition-opacity"></div>
+    <div class="absolute inset-y-0 right-0 max-w-full flex pl-10 pointer-events-auto">
+      <div class="w-screen max-w-md bg-white border-l border-sand-200 shadow-2xl flex flex-col">
+        <!-- Cart Header -->
+        <div class="p-6 border-b border-sand-200 flex items-center justify-between bg-sand-50">
+          <div>
+            <h3 class="font-serif text-lg font-semibold text-sand-900">Your Order Tray</h3>
+            <span id="cart-subtitle" class="text-xs text-sand-600">2 items selected</span>
+          </div>
+          <button onclick="toggleCart()" class="p-2 text-sand-500 hover:text-black">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <!-- Cart Items List -->
+        <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4 custom-scrollbar">
+          <!-- Dynamically populated or defaults -->
+        </div>
+
+        <!-- Cart Footer -->
+        <div class="p-6 border-t border-sand-200 bg-sand-50 space-y-4">
+          <div class="space-y-1.5 text-xs">
+            <div class="flex justify-between text-sand-600">
+              <span>Subtotal</span>
+              <span id="cart-subtotal" class="font-medium text-sand-900">Rs. 2,400</span>
+            </div>
+            <div class="flex justify-between text-sand-600">
+              <span>Estimated Delivery / Service</span>
+              <span class="font-medium text-sand-900">Rs. 100</span>
+            </div>
+            <div class="flex justify-between text-sm font-semibold text-sand-900 pt-2 border-t border-sand-200">
+              <span>Total</span>
+              <span id="cart-total">Rs. 2,500</span>
+            </div>
+          </div>
+
+          <button onclick="proceedToCheckout()" class="w-full py-3.5 bg-sand-900 hover:bg-neutral-800 text-white rounded-full text-xs uppercase tracking-wider font-semibold transition shadow-sm">
+            Proceed to Checkout
+          </button>
+          <p class="text-[11px] text-center text-sand-500">Pick up at KMH Plaza or deliver to your door in Mardan</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORDER MODAL (PICKUP / DELIVERY) -->
+  <div id="order-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs hidden">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-sand-200 relative">
+      <button onclick="toggleModal('order-modal')" class="absolute top-5 right-5 text-sand-400 hover:text-black">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <span class="text-[10px] uppercase font-bold tracking-widest text-sand-500 block mb-1">Azbaa Direct Service</span>
+      <h3 id="order-modal-title" class="font-serif text-2xl font-semibold text-sand-900 mb-4">Start Your Order</h3>
+
+      <!-- Tab toggle: Pickup vs Delivery -->
+      <div class="grid grid-cols-2 p-1 bg-sand-100 rounded-xl mb-6 text-xs font-semibold">
+        <button id="modal-tab-pickup" onclick="setOrderType('pickup')" class="py-2 rounded-lg bg-white shadow-xs text-sand-900 transition">Store Pickup</button>
+        <button id="modal-tab-delivery" onclick="setOrderType('delivery')" class="py-2 rounded-lg text-sand-600 transition">Delivery in Mardan</button>
+      </div>
+
+      <form onsubmit="handleOrderSubmit(event)" class="space-y-4 text-xs">
+        <div>
+          <label class="block font-medium text-sand-800 mb-1">Your Full Name</label>
+          <input type="text" required placeholder="e.g. Asad Khan" class="w-full p-3 rounded-lg border border-sand-200 focus:outline-none focus:border-black bg-sand-50/50">
+        </div>
+        <div>
+          <label class="block font-medium text-sand-800 mb-1">Phone Number (Required for confirmation)</label>
+          <input type="tel" required placeholder="03xx xxxxxxx" class="w-full p-3 rounded-lg border border-sand-200 focus:outline-none focus:border-black bg-sand-50/50">
+        </div>
+        <div id="delivery-address-field" class="hidden">
+          <label class="block font-medium text-sand-800 mb-1">Delivery Address in Mardan</label>
+          <textarea rows="2" placeholder="Street, Sector, Landmark near you" class="w-full p-3 rounded-lg border border-sand-200 focus:outline-none focus:border-black bg-sand-50/50"></textarea>
+        </div>
+        <div>
+          <label class="block font-medium text-sand-800 mb-1">Special Instructions</label>
+          <input type="text" placeholder="Extra sauce, cutlery, call upon arrival..." class="w-full p-3 rounded-lg border border-sand-200 focus:outline-none focus:border-black bg-sand-50/50">
+        </div>
+
+        <button type="submit" class="w-full mt-2 py-3 bg-sand-900 text-white rounded-xl uppercase tracking-wider font-semibold hover:bg-black transition">
+          Confirm Order Request
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- TABLE RESERVATION MODAL -->
+  <div id="reservation-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs hidden">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-sand-200 relative">
+      <button onclick="toggleModal('reservation-modal')" class="absolute top-5 right-5 text-sand-400 hover:text-black">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <span class="text-[10px] uppercase font-bold tracking-widest text-sand-500 block mb-1">Table Booking</span>
+      <h3 class="font-serif text-2xl font-semibold text-sand-900 mb-2">Reserve at KMH Plaza</h3>
+      <p class="text-xs text-sand-600 mb-6">Family seating & quiet booths available daily from 12:00 PM to midnight.</p>
+
+      <form onsubmit="handleReservationSubmit(event)" class="space-y-3.5 text-xs">
+        <div>
+          <label class="block font-medium text-sand-800 mb-1">Contact Name</label>
+          <input type="text" required placeholder="Your Name" class="w-full p-2.5 rounded-lg border border-sand-200 focus:outline-none focus:border-black">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-medium text-sand-800 mb-1">Guests</label>
+            <select class="w-full p-2.5 rounded-lg border border-sand-200 focus:outline-none focus:border-black bg-white">
+              <option>2 Persons</option>
+              <option>3 - 4 Persons</option>
+              <option>5 - 8 Persons</option>
+              <option>Large Family (9+)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-medium text-sand-800 mb-1">Time</label>
+            <select class="w-full p-2.5 rounded-lg border border-sand-200 focus:outline-none focus:border-black bg-white">
+              <option>1:00 PM (Lunch)</option>
+              <option>3:00 PM</option>
+              <option>7:30 PM (Dinner)</option>
+              <option>9:00 PM</option>
+              <option>10:30 PM (Late)</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label class="block font-medium text-sand-800 mb-1">Date</label>
+          <input type="date" required id="res-date" class="w-full p-2.5 rounded-lg border border-sand-200 focus:outline-none focus:border-black">
+        </div>
+        <div>
+          <label class="block font-medium text-sand-800 mb-1">Phone Number</label>
+          <input type="tel" required placeholder="0318xxxxxxx" class="w-full p-2.5 rounded-lg border border-sand-200 focus:outline-none focus:border-black">
+        </div>
+
+        <button type="submit" class="w-full mt-3 py-3 bg-sand-900 text-white rounded-xl uppercase tracking-wider font-semibold hover:bg-black transition">
+          Confirm Reservation
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- WRITE REVIEW MODAL -->
+  <div id="write-review-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs hidden">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 sm:p-8 shadow-2xl border border-sand-200 relative">
+      <button onclick="toggleModal('write-review-modal')" class="absolute top-5 right-5 text-sand-400 hover:text-black">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <h3 class="font-serif text-2xl font-semibold text-sand-900 mb-1">Review Azbaa Café</h3>
+      <p class="text-xs text-sand-600 mb-5">Share your dining experience with the Mardan community.</p>
+
+      <form onsubmit="handleReviewSubmit(event)" class="space-y-4 text-xs">
+        <div>
+          <label class="block font-medium text-sand-800 mb-1">Your Name</label>
+          <input type="text" required placeholder="e.g. Bilal Ahmad" class="w-full p-2.5 rounded-lg border border-sand-200 focus:outline-none focus:border-black">
+        </div>
+        <div>
+          <label class="block font-medium text-sand-800 mb-1">Rating</label>
+          <div class="flex gap-2 text-2xl text-amber-400 cursor-pointer" id="star-rating">
+            <span onclick="setStars(1)">★</span>
+            <span onclick="setStars(2)">★</span>
+            <span onclick="setStars(3)">★</span>
+            <span onclick="setStars(4)">★</span>
+            <span onclick="setStars(5)">★</span>
+          </div>
+        </div>
+        <div>
+          <label class="block font-medium text-sand-800 mb-1">Your Review</label>
+          <textarea rows="3" required placeholder="What did you order? How was the service and taste?" class="w-full p-2.5 rounded-lg border border-sand-200 focus:outline-none focus:border-black"></textarea>
+        </div>
+
+        <button type="submit" class="w-full py-3 bg-sand-900 text-white rounded-xl uppercase tracking-wider font-semibold hover:bg-black transition">
+          Publish Review
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FULL MENU MODAL -->
+  <div id="full-menu-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs hidden">
+    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[85vh] flex flex-col p-6 sm:p-8 shadow-2xl border border-sand-200 relative">
+      <button onclick="toggleModal('full-menu-modal')" class="absolute top-5 right-5 text-sand-400 hover:text-black">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <div class="border-b border-sand-200 pb-4 mb-4">
+        <span class="text-[10px] uppercase font-bold tracking-widest text-sand-500">Azbaa Café Complete Catalog</span>
+        <h3 class="font-serif text-2xl font-semibold text-sand-900">Food & Drink Menu</h3>
+      </div>
+
+      <div class="flex-1 overflow-y-auto space-y-6 pr-2 custom-scrollbar text-xs">
+        <div>
+          <h4 class="font-serif font-bold text-sm uppercase tracking-wider text-sand-900 mb-3 border-b border-sand-100 pb-1">Signature Pizzas</h4>
+          <div class="space-y-3">
+            <div class="flex justify-between items-center">
+              <div>
+                <strong class="text-sand-900 block font-medium">Crown Crust Pizza (Large)</strong>
+                <span class="text-sand-500">Stuffed cream cheese pockets with spicy chicken fajita</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="font-bold">Rs. 1,750</span>
+                <button onclick="addToCart('Crown Crust Pizza', 1750)" class="px-2.5 py-1 bg-sand-100 hover:bg-sand-900 hover:text-white rounded">+ Add</button>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <div>
+                <strong class="text-sand-900 block font-medium">Azbaa Special Pizza (Large)</strong>
+                <span class="text-sand-500">Loaded sausages, mushrooms, black olives, bell pepper</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="font-bold">Rs. 1,700</span>
+                <button onclick="addToCart('Azbaa Special Pizza', 1700)" class="px-2.5 py-1 bg-sand-100 hover:bg-sand-900 hover:text-white rounded">+ Add</button>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <div>
+                <strong class="text-sand-900 block font-medium">EveryDay Value Large Pizza</strong>
+                <span class="text-sand-500">Thin crust classic with choice of chicken Tikka or Fajita</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="font-bold">Rs. 1,700</span>
+                <button onclick="addToCart('EveryDay Value Large Pizza', 1700)" class="px-2.5 py-1 bg-sand-100 hover:bg-sand-900 hover:text-white rounded">+ Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-serif font-bold text-sm uppercase tracking-wider text-sand-900 mb-3 border-b border-sand-100 pb-1">Burgers & Sandwiches</h4>
+          <div class="space-y-3">
+            <div class="flex justify-between items-center">
+              <div>
+                <strong class="text-sand-900 block font-medium">Chicken Grilled Burger</strong>
+                <span class="text-sand-500">Grilled breast fillet, signature house sauce, fresh salad</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="font-bold">Rs. 650</span>
+                <button onclick="addToCart('Chicken Grilled Burger', 650)" class="px-2.5 py-1 bg-sand-100 hover:bg-sand-900 hover:text-white rounded">+ Add</button>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <div>
+                <strong class="text-sand-900 block font-medium">Double Decker Beef Burger</strong>
+                <span class="text-sand-500">Twin smashed patties with cheddar melt & caramelized onions</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="font-bold">Rs. 890</span>
+                <button onclick="addToCart('Double Decker Beef Burger', 890)" class="px-2.5 py-1 bg-sand-100 hover:bg-sand-900 hover:text-white rounded">+ Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-serif font-bold text-sm uppercase tracking-wider text-sand-900 mb-3 border-b border-sand-100 pb-1">Wings & Combos</h4>
+          <div class="space-y-3">
+            <div class="flex justify-between items-center">
+              <div>
+                <strong class="text-sand-900 block font-medium">Zinger Got Wings Deal-1</strong>
+                <span class="text-sand-500">1 Zinger + 4 Wings + Fries + 500ml Drink</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="font-bold">Rs. 1,250</span>
+                <button onclick="addToCart('Zinger Got Wings Deal-1', 1250)" class="px-2.5 py-1 bg-sand-100 hover:bg-sand-900 hover:text-white rounded">+ Add</button>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <div>
+                <strong class="text-sand-900 block font-medium">Crunch Got Wings (Deal-2)</strong>
+                <span class="text-sand-500">8 Crunchy wings + Dip sauce + Regular Fries</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="font-bold">Rs. 1,050</span>
+                <button onclick="addToCart('Crunch Got Wings (Deal-2)', 1050)" class="px-2.5 py-1 bg-sand-100 hover:bg-sand-900 hover:text-white rounded">+ Add</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-4 border-t border-sand-200 mt-2 flex justify-end">
+        <button onclick="toggleModal('full-menu-modal'); toggleCart()" class="px-6 py-2.5 bg-sand-900 text-white rounded-full text-xs uppercase tracking-wider font-semibold">View Tray & Checkout</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ITEM DETAIL / CUSTOMIZE MODAL -->
+  <div id="item-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs hidden">
+    <div class="bg-white rounded-2xl max-w-md w-full overflow-hidden shadow-2xl border border-sand-200 relative">
+      <button onclick="toggleModal('item-modal')" class="absolute top-4 right-4 z-10 bg-white/80 p-1.5 rounded-full text-sand-600 hover:text-black">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <div class="aspect-[16/9] w-full bg-sand-100 overflow-hidden">
+        <img id="detail-img" src="" alt="Food Item" class="w-full h-full object-cover">
+      </div>
+
+      <div class="p-6 space-y-4 text-xs">
+        <div>
+          <div class="flex justify-between items-start mb-1">
+            <h3 id="detail-title" class="font-serif text-xl font-semibold text-sand-900">Item Name</h3>
+            <span id="detail-price" class="text-base font-bold text-sand-900">Rs. 0</span>
+          </div>
+          <p id="detail-desc" class="text-sand-600 leading-relaxed"></p>
+        </div>
+
+        <div class="space-y-2 pt-2 border-t border-sand-100">
+          <label class="block font-semibold text-sand-900">Choose Spice Level / Crust:</label>
+          <div class="grid grid-cols-3 gap-2">
+            <label class="border border-sand-200 p-2 rounded-lg text-center cursor-pointer hover:border-black flex flex-col items-center">
+              <input type="radio" name="spice" checked class="accent-sand-900 mb-1">
+              <span>Mild</span>
+            </label>
+            <label class="border border-sand-200 p-2 rounded-lg text-center cursor-pointer hover:border-black flex flex-col items-center">
+              <input type="radio" name="spice" class="accent-sand-900 mb-1">
+              <span>Classic Spicy</span>
+            </label>
+            <label class="border border-sand-200 p-2 rounded-lg text-center cursor-pointer hover:border-black flex flex-col items-center">
+              <input type="radio" name="spice" class="accent-sand-900 mb-1">
+              <span>Extra Hot</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="pt-3 border-t border-sand-100 flex items-center gap-3">
+          <div class="flex items-center border border-sand-200 rounded-lg">
+            <button onclick="decrementDetailQty()" class="px-3 py-2 text-sand-600 hover:text-black text-sm font-bold">-</button>
+            <span id="detail-qty" class="px-2 font-semibold">1</span>
+            <button onclick="incrementDetailQty()" class="px-3 py-2 text-sand-600 hover:text-black text-sm font-bold">+</button>
+          </div>
+          <button id="detail-add-btn" class="flex-1 py-3 bg-sand-900 hover:bg-black text-white rounded-lg uppercase tracking-wider font-semibold transition">
+            Add to Tray
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 bg-sand-900 text-white text-xs px-5 py-3 rounded-xl shadow-xl transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-3">
+    <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+    <span id="toast-msg">Action completed</span>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // State management
+    const state = {
+      cart: [
+        { name: 'Crown Crust Pizza', price: 1750, qty: 1 },
+        { name: 'Chicken Grilled Burger', price: 650, qty: 1 }
+      ],
+      detailQty: 1,
+      currentDetailItem: null
+    };
+
+    // Auto set date picker min to today
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('year').textContent = new Date().getFullYear();
+      const today = new Date().toISOString().split('T')[0];
+      const resDateInput = document.getElementById('res-date');
+      if (resDateInput) resDateInput.min = today;
+      renderCart();
+    });
+
+    // Mobile nav toggle
+    function toggleMobileNav() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+
+    // Modal Generic Toggle
+    function toggleModal(id) {
+      const modal = document.getElementById(id);
+      if (!modal) return;
+      modal.classList.toggle('hidden');
+    }
+
+    // Cart Toggle
+    function toggleCart() {
+      const drawer = document.getElementById('cart-drawer');
+      const isHidden = drawer.classList.contains('invisible');
+      if (isHidden) {
+        drawer.classList.remove('invisible', 'opacity-0');
+      } else {
+        drawer.classList.add('invisible', 'opacity-0');
+      }
+    }
+
+    // Render cart items
+    function renderCart() {
+      const container = document.getElementById('cart-items-container');
+      const badge = document.getElementById('cart-badge');
+      const subtotalEl = document.getElementById('cart-subtotal');
+      const totalEl = document.getElementById('cart-total');
+      const subtitle = document.getElementById('cart-subtitle');
+
+      const totalItems = state.cart.reduce((acc, item) => acc + item.qty, 0);
+      badge.textContent = totalItems;
+      subtitle.textContent = `${totalItems} item${totalItems === 1 ? '' : 's'} selected`;
+
+      if (state.cart.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-16 text-sand-500 text-xs">
+            <svg class="w-10 h-10 mx-auto text-sand-300 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+            <p>Your order tray is currently empty.</p>
+            <button onclick="toggleCart()" class="mt-4 px-4 py-2 border border-sand-300 rounded-full font-medium hover:border-black text-sand-900">Explore Dishes</button>
+          </div>
+        `;
+        subtotalEl.textContent = 'Rs. 0';
+        totalEl.textContent = 'Rs. 0';
+        return;
+      }
+
+      let subtotal = 0;
+      container.innerHTML = state.cart.map((item, idx) => {
+        const itemTotal = item.price * item.qty;
+        subtotal += itemTotal;
+        return `
+          <div class="flex items-center justify-between p-3.5 bg-sand-50 rounded-xl border border-sand-200 text-xs">
+            <div class="flex-1 pr-2">
+              <h4 class="font-semibold text-sand-900">${item.name}</h4>
+              <p class="text-sand-500 text-[11px]">Rs. ${item.price.toLocaleString()} each</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="flex items-center bg-white border border-sand-300 rounded-md">
+                <button onclick="updateQty(${idx}, -1)" class="px-2 py-0.5 text-sand-600 hover:text-black">-</button>
+                <span class="px-1.5 font-semibold text-[11px]">${item.qty}</span>
+                <button onclick="updateQty(${idx}, 1)" class="px-2 py-0.5 text-sand-600 hover:text-black">+</button>
+              </div>
+              <span class="font-bold text-sand-900 w-16 text-right">Rs. ${itemTotal.toLocaleString()}</span>
+              <button onclick="removeItem(${idx})" class="text-sand-400 hover:text-red-500 p-1">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      const deliveryFee = 100;
+      subtotalEl.textContent = `Rs. ${subtotal.toLocaleString()}`;
+      totalEl.textContent = `Rs. ${(subtotal + deliveryFee).toLocaleString()}`;
+    }
+
+    function addToCart(name, price, qty = 1) {
+      const existing = state.cart.find(i => i.name === name);
+      if (existing) {
+        existing.qty += qty;
+      } else {
+        state.cart.push({ name, price, qty });
+      }
+      renderCart();
+      showToast(`Added ${name} to your tray`);
+    }
+
+    function updateQty(index, change) {
+      state.cart[index].qty += change;
+      if (state.cart[index].qty <= 0) {
+        state.cart.splice(index, 1);
+      }
+      renderCart();
+    }
+
+    function removeItem(index) {
+      state.cart.splice(index, 1);
+      renderCart();
+    }
+
+    // Filter menu categories
+    function filterCategory(cat, btn) {
+      const cards = document.querySelectorAll('.menu-card');
+      const buttons = document.querySelectorAll('.menu-tab-btn');
+
+      buttons.forEach(b => {
+        b.classList.remove('bg-sand-900', 'text-white');
+        b.classList.add('bg-transparent', 'text-sand-800');
+      });
+      btn.classList.add('bg-sand-900', 'text-white');
+      btn.classList.remove('bg-transparent', 'text-sand-800');
+
+      cards.forEach(card => {
+        if (cat === 'all' || card.dataset.category === cat) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Item quick detail modal
+    function openItemDetails(title, price, desc, imgSrc) {
+      state.detailQty = 1;
+      state.currentDetailItem = { title, price };
+      document.getElementById('detail-title').textContent = title;
+      document.getElementById('detail-price').textContent = `Rs. ${price.toLocaleString()}`;
+      document.getElementById('detail-desc').textContent = desc;
+      document.getElementById('detail-img').src = imgSrc;
+      document.getElementById('detail-qty').textContent = '1';
+
+      const addBtn = document.getElementById('detail-add-btn');
+      addBtn.onclick = function() {
+        addToCart(title, price, state.detailQty);
+        toggleModal('item-modal');
+      };
+
+      toggleModal('item-modal');
+    }
+
+    function incrementDetailQty() {
+      state.detailQty++;
+      document.getElementById('detail-qty').textContent = state.detailQty;
+    }
+
+    function decrementDetailQty() {
+      if (state.detailQty > 1) {
+        state.detailQty--;
+        document.getElementById('detail-qty').textContent = state.detailQty;
+      }
+    }
+
+    // Order pickup/delivery modal logic
+    function openOrderModal(type) {
+      const modal = document.getElementById('order-modal');
+      modal.classList.remove('hidden');
+      setOrderType(type);
+    }
+
+    function setOrderType(type) {
+      const btnPickup = document.getElementById('modal-tab-pickup');
+      const btnDelivery = document.getElementById('modal-tab-delivery');
+      const addrField = document.getElementById('delivery-address-field');
+      const title = document.getElementById('order-modal-title');
+
+      if (type === 'delivery') {
+        btnDelivery.className = "py-2 rounded-lg bg-white shadow-xs text-sand-900 transition";
+        btnPickup.className = "py-2 rounded-lg text-sand-600 transition";
+        addrField.classList.remove('hidden');
+        title.textContent = "Delivery in Mardan";
+      } else {
+        btnPickup.className = "py-2 rounded-lg bg-white shadow-xs text-sand-900 transition";
+        btnDelivery.className = "py-2 rounded-lg text-sand-600 transition";
+        addrField.classList.add('hidden');
+        title.textContent = "Pickup from KMH Plaza";
+      }
+    }
+
+    function handleOrderSubmit(e) {
+      e.preventDefault();
+      toggleModal('order-modal');
+      showToast("Order received! We'll call to confirm within 3 mins.");
+    }
+
+    function proceedToCheckout() {
+      toggleCart();
+      openOrderModal('delivery');
+    }
+
+    function openDeal(dealName, price) {
+      addToCart(dealName, price);
+      toggleCart();
+    }
+
+    function handleReservationSubmit(e) {
+      e.preventDefault();
+      toggleModal('reservation-modal');
+      showToast("Table reserved successfully! Confirmation SMS dispatched.");
+    }
+
+    function handleReviewSubmit(e) {
+      e.preventDefault();
+      toggleModal('write-review-modal');
+      showToast("Thank you for reviewing Azbaa Café!");
+    }
+
+    function handleNewsletter(e) {
+      e.preventDefault();
+      showToast("Subscribed! Thank you for joining Azbaa Café club.");
+      e.target.reset();
+    }
+
+    function setStars(count) {
+      const stars = document.getElementById('star-rating').children;
+      for (let i = 0; i < stars.length; i++) {
+        stars[i].style.opacity = i < count ? '1' : '0.3';
+      }
+    }
+
+    // Toggle hours details dropdown
+    function toggleHoursTable() {
+      const table = document.getElementById('hours-table');
+      const arrow = document.getElementById('hours-arrow');
+      const text = document.getElementById('hours-toggle-text');
+      const isHidden = table.classList.contains('hidden');
+
+      if (isHidden) {
+        table.classList.remove('hidden');
+        arrow.classList.add('rotate-180');
+        text.textContent = 'Hide schedule';
+      } else {
+        table.classList.add('hidden');
+        arrow.classList.remove('rotate-180');
+        text.textContent = 'View schedule';
+      }
+    }
+
+    // Toast notification helper
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-msg');
+      toastMsg.textContent = message;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 3500);
+    }
+  </script>
+</body>
+</html>
